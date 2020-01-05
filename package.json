@@ -1,14 +1,15 @@
 {
-	"name": "shards-dashboard-lite-react",
+	"name": "stocks-prediction",
 	"version": "1.0.0",
 	"private": true,
-	"homepage": "./",
+  "homepage": "./",
+  "repository": "git@github.com:syuraj/stocks-prediction.git",
+  "author": "Suraj Shrestha <syuraj@gmail.com>",
 	"scripts": {
 		"start": "react-scripts start",
 		"build:prod": "cross-env REACT_APP_BASENAME=/demo/shards-dashboard-lite-react REACT_APP_GAID=UA-115105611-1 npm run build",
 		"build": "cross-env REACT_APP_BASENAME=/demo/shards-dashboard-lite-react react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"test": "cross-env NODE_ENV='test' react-scripts test"
 	},
 	"dependencies": {
 		"camelize": "^1.0.0",
