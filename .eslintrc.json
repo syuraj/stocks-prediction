@@ -1,0 +1,48 @@
+{
+	"env": {
+		"es6": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": ["standard", "plugin:prettier/recommended", "@react-native-community"],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly",
+		"fetch": "readonly"
+	},
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"semi": "off",
+		"indent": [
+			"error",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"max-len": [
+			"error",
+			{
+				"code": 150,
+				"ignoreComments": true,
+				"ignoreStrings": true,
+				"ignoreUrls": true
+			}
+		],
+		"react/jsx-uses-react": "error",
+		"react/jsx-uses-vars": "error",
+		"no-tabs": "off",
+		"eol-last": "off",
+		"generator-star-spacing": "off",
+		"quotes": "warn",
+		"comma-dangle": "off"
+	}
+}
