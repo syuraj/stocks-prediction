@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'shards-react'
 
 import SmallStats from './../components/common/SmallStats'
-import UsersOverview from './../components/blog/UsersOverview'
-import Discussions from './../components/blog/Discussions'
+import UsersOverview from '../components/stock/StockForecast'
+import Discussions from '../components/stock/Discussions'
 
 const StockOverview = ({ smallStats }) => (
 	<Container fluid className="main-content-container px-4">
@@ -43,9 +43,6 @@ const StockOverview = ({ smallStats }) => (
 )
 
 StockOverview.propTypes = {
-	/**
-	 * The small stats dataset.
-	 */
 	smallStats: PropTypes.array,
 }
 

@@ -1,5 +1,7 @@
 {
   "editor.insertSpaces": false,
 	"editor.tabSize": 4,
-	"deepscan.enable": true
+  "deepscan.enable": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 2000
 }
