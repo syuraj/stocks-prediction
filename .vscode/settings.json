@@ -1,8 +1,9 @@
 {
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
-  "deepscan.enable": true,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 2000
+	"editor.detectIndentation": true,
+	"deepscan.enable": true,
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 2000
 }
