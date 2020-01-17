@@ -1,0 +1,15 @@
+type Model {
+	symbol: String!
+	model: String!
+	date_created: String
+	date_modified: String
+}
+
+input ModelCriteria {
+	lastArticleId: String
+	lastQueryDate: String
+}
+
+type Query {
+	getModels(criteria: ModelCriteria): [Model]!
+}
