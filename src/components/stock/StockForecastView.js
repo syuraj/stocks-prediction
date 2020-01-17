@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { hot } from 'react-hot-loader'
 import PropTypes from 'prop-types'
 import { Card, CardHeader, CardBody } from 'shards-react'
 
 import Chart from '../../utils/chart'
 
-class StockForecast extends React.Component {
+class StockForecastView extends React.Component {
 	constructor(props) {
 		super(props)
 
@@ -97,13 +99,13 @@ class StockForecast extends React.Component {
 	}
 }
 
-StockForecast.propTypes = {
+StockForecastView.propTypes = {
 	title: PropTypes.string,
 	chartData: PropTypes.object,
 	chartOptions: PropTypes.object
 }
 
-StockForecast.defaultProps = {
+StockForecastView.defaultProps = {
 	chartData: {
 		labels: Array.from(new Array(30), (_, i) => (i === 0 ? 1 : i)),
 		datasets: [
@@ -137,4 +139,15 @@ StockForecast.defaultProps = {
 	}
 }
 
-export default StockForecast
+function mapStateToProps(state) {
+	return {
+		chartData: state.homeReducer.chartData
+	}
+}
+
+export default hot(module)(
+	connect(
+		mapStateToProps,
+		null
+	)(StockForecastView)
+)
