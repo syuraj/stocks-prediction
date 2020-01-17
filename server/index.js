@@ -16,10 +16,6 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname, '/../build')))
 
-app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname, '/../build', 'index.html'))
-})
-
 if (isDevelopment) {
 	app.use(errorhandler())
 }
@@ -60,6 +56,10 @@ const server = new ApolloServer({
 	})
 })
 
-server.applyMiddleware({ app })
+server.applyMiddleware({ app, path: '/graphql' })
+
+app.get('/*', function(req, res) {
+	res.sendFile(path.join(__dirname, '/../build', 'index.html'))
+})
 
 app.listen(process.env.PORT, () => console.log(`Server running on http://localhost:${process.env.PORT}`))
