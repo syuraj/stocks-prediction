@@ -1,6 +1,7 @@
 type Model {
 	symbol: String!
-	model: String!
+	stock_history: String!
+	stock_forecast: String!
 	date_created: String
 	date_modified: String
 }

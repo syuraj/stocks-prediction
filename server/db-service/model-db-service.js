@@ -7,6 +7,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 
 module.exports = {
 	getModels: async (criteria) => {
+		console.log('Printing criteria', criteria)
 		return await Model.find({ symbol: { $in: criteria.symbols } })
 			.lean()
 			.sort({ _id: -1 })
