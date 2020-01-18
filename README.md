@@ -2,9 +2,9 @@
 
 ### Quick Start
 
--   Install dependencies by running.
--   Run `yarn start:dev` to start the local development server.
--   Run `yarn start` to start express server and serve graphql api and prod built of react app.
+-   Run `yarn` to install dependencies.
+-   Run `yarn start:dev` to start the react client locally at port 8090. It will also load the app in the browser.
+-   Run `yarn start` to start express server and serve graphql api and prod built of react app at port 8091.
 -   Run `yarn build` to build prod build of react
 
 <br />
