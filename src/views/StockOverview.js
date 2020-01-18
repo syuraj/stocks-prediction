@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'shards-react'
 
 import SmallStats from './../components/common/SmallStats'
-import UsersOverview from '../components/stock/StockForecastView'
+import StockForecast from '../components/stock/StockForecastContainer'
 import NewsPosts from '../components/common/NewsPosts'
 
 const StockOverview = ({ smallStats }) => (
@@ -12,7 +12,7 @@ const StockOverview = ({ smallStats }) => (
 
 		<Row>
 			<Col lg="12" md="12" sm="12" className="mb-4">
-				<UsersOverview />
+				<StockForecast />
 			</Col>
 		</Row>
 

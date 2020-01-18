@@ -66,22 +66,23 @@ class StockForecastView extends React.Component {
 			...this.props.chartOptions
 		}
 
-		this.props.chartData.datasets[0].data = this.props.data[0]
-		this.props.chartData.datasets[1].data = this.props.data[1]
+		let model = JSON.parse(this.props.model[0].model)
 
-		const BlogUsersOverview = new Chart(this.canvasRef.current, {
+		this.props.chartData.datasets[0].data = Object.values(model.yhat)
+
+		const StockChart = new Chart(this.canvasRef.current, {
 			type: 'line',
 			data: this.props.chartData,
 			options: chartOptions
 		})
 
 		// They can still be triggered on hover.
-		const buoMeta = BlogUsersOverview.getDatasetMeta(0)
+		const buoMeta = StockChart.getDatasetMeta(0)
 		buoMeta.data[0]._model.radius = 0
 		buoMeta.data[this.props.chartData.datasets[0].data.length - 1]._model.radius = 0
 
 		// Render the chart.
-		BlogUsersOverview.render()
+		StockChart.render()
 	}
 
 	render() {

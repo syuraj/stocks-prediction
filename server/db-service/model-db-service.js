@@ -10,6 +10,6 @@ module.exports = {
 		return await Model.find(conditions)
 			.lean()
 			.sort({ _id: -1 })
-			.limit(100)
+			.limit(10)
 	}
 }

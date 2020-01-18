@@ -7,6 +7,7 @@ const STOCK_CHART_QUERY = gql`
 	{
 		getModels {
 			symbol
+			model
 		}
 	}
 `
@@ -17,5 +18,5 @@ export default function StockForecastContainer() {
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error :(</p>
 
-	return <StockForecastView data={data}></StockForecastView>
+	return <StockForecastView model={data.getModels}></StockForecastView>
 }
