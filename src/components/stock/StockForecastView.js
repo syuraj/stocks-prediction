@@ -5,10 +5,6 @@ import { Card, CardHeader, CardBody } from 'shards-react'
 import { createChart } from 'lightweight-charts'
 
 class StockForecastView extends React.Component {
-	constructor(props) {
-		super(props)
-	}
-
 	componentDidMount() {
 		const model = JSON.parse(this.props.model[0].model)
 		let chartData = []
