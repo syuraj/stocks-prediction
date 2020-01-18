@@ -1,88 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { Card, CardHeader, CardBody } from 'shards-react'
-import Chart from '../../utils/chart'
+import { createChart } from 'lightweight-charts'
 
 class StockForecastView extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.canvasRef = React.createRef()
 	}
 
 	componentDidMount() {
-		const chartOptions = {
-			...{
-				responsive: true,
-				legend: {
-					display: false
-				},
-				elements: {
-					line: {
-						// A higher value makes the line look skewed at this ratio.
-						tension: 0.3
-					},
-					point: {
-						radius: 0
-					}
-				},
-				scales: {
-					xAxes: [
-						{
-							gridLines: false,
-							ticks: {
-								callback(tick, index) {
-									// Jump every 7 values on the X axis labels to avoid clutter.
-									return index % 7 !== 0 ? '' : tick
-								}
-							}
-						}
-					],
-					yAxes: [
-						{
-							ticks: {
-								suggestedMax: 45,
-								callback(tick) {
-									if (tick === 0) {
-										return tick
-									}
-									// Format the amounts using Ks for thousands.
-									return tick > 999 ? `${(tick / 1000).toFixed(1)}K` : tick
-								}
-							}
-						}
-					]
-				},
-				hover: {
-					mode: 'nearest',
-					intersect: false
-				},
-				tooltips: {
-					custom: false,
-					mode: 'nearest',
-					intersect: false
-				}
-			},
-			...this.props.chartOptions
+		const model = JSON.parse(this.props.model[0].model)
+		let chartData = []
+
+		for (let index = 0; index < Object.keys(model.ds).length; index++) {
+			const element = { time: moment.unix(model.ds[index] / 1000).format('YYYY-MM-DD'), value: model.yhat[index] }
+			chartData.push(element)
 		}
 
-		let model = JSON.parse(this.props.model[0].model)
+		const chart = createChart(this.refs.divRef, { width: this.refs.divRef.offsetWidth, height: 300 })
 
-		this.props.chartData.datasets[0].data = Object.values(model.yhat)
-
-		const StockChart = new Chart(this.canvasRef.current, {
-			type: 'line',
-			data: this.props.chartData,
-			options: chartOptions
-		})
-
-		// They can still be triggered on hover.
-		const buoMeta = StockChart.getDatasetMeta(0)
-		buoMeta.data[0]._model.radius = 0
-		buoMeta.data[this.props.chartData.datasets[0].data.length - 1]._model.radius = 0
-
-		// Render the chart.
-		StockChart.render()
+		const lineSeries = chart.addLineSeries()
+		lineSeries.setData(chartData)
 	}
 
 	render() {
@@ -94,7 +33,7 @@ class StockForecastView extends React.Component {
 					<h6 className="m-0">{title}</h6>
 				</CardHeader>
 				<CardBody className="pt-0">
-					<canvas height="120" ref={this.canvasRef} style={{ maxWidth: '100% !important' }} />
+					<div height="300" ref="divRef" style={{ maxWidth: '100% !important' }} />
 				</CardBody>
 			</Card>
 		)
