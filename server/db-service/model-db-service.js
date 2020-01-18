@@ -6,8 +6,8 @@ mongoose.promise = global.Promise
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 module.exports = {
-	getModels: async (conditions) => {
-		return await Model.find(conditions)
+	getModels: async (criteria) => {
+		return await Model.find({ symbol: { $in: criteria.symbols } })
 			.lean()
 			.sort({ _id: -1 })
 			.limit(10)

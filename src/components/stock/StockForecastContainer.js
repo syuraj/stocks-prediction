@@ -4,8 +4,8 @@ import { gql } from 'apollo-boost'
 import StockForecastView from './StockForecastView'
 
 const STOCK_CHART_QUERY = gql`
-	{
-		getModels {
+	query getModels($symbols: [String]!) {
+		getModels(criteria: { symbols: $symbols }) {
 			symbol
 			model
 		}
@@ -13,7 +13,7 @@ const STOCK_CHART_QUERY = gql`
 `
 
 export default function StockForecastContainer() {
-	const { loading, error, data } = useQuery(STOCK_CHART_QUERY)
+	const { loading, error, data } = useQuery(STOCK_CHART_QUERY, { variables: { symbols: ['TSLA'] } })
 
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error :(</p>
