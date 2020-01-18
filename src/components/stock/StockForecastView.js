@@ -18,7 +18,20 @@ class StockForecastView extends React.Component {
 			chartData.push(element)
 		}
 
-		const chart = createChart(this.refs.divRef, { width: this.refs.divRef.offsetWidth, height: 300 })
+		const chartOptions = {
+			width: this.refs.divRef.offsetWidth,
+			height: 300,
+			grid: {
+				horzLines: {
+					color: '#fef'
+				},
+				vertLines: {
+					color: '#fef'
+				}
+			}
+		}
+
+		const chart = createChart(this.refs.divRef, chartOptions)
 
 		const lineSeries = chart.addLineSeries()
 		lineSeries.setData(chartData)
@@ -42,42 +55,7 @@ class StockForecastView extends React.Component {
 
 StockForecastView.propTypes = {
 	title: PropTypes.string,
-	chartData: PropTypes.object,
-	chartOptions: PropTypes.object
-}
-
-StockForecastView.defaultProps = {
-	chartData: {
-		labels: Array.from(new Array(30), (_, i) => (i === 0 ? 1 : i)),
-		datasets: [
-			{
-				label: 'Price',
-				fill: false,
-				data: [500, 800, 320, 180, 240, 320, 230, 650],
-				backgroundColor: 'rgba(0,123,255,0.1)',
-				borderColor: 'rgba(0,123,255,1)',
-				pointBackgroundColor: '#ffffff',
-				pointHoverBackgroundColor: 'rgb(0,123,255)',
-				borderWidth: 1.5,
-				pointRadius: 0,
-				pointHoverRadius: 3
-			},
-			{
-				label: 'Prediction',
-				fill: false,
-				data: [380, 430, 120, 230, 410, 740, 472, 219],
-				backgroundColor: 'rgba(255,65,105,0.1)',
-				borderColor: 'rgba(255,65,105,1)',
-				pointBackgroundColor: '#ffffff',
-				pointHoverBackgroundColor: 'rgba(255,65,105,1)',
-				borderDash: [3, 3],
-				borderWidth: 1,
-				pointRadius: 0,
-				pointHoverRadius: 2,
-				pointBorderColor: 'rgba(255,65,105,1)'
-			}
-		]
-	}
+	model: PropTypes.object
 }
 
 export default StockForecastView
