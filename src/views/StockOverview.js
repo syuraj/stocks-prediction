@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'shards-react'
 
 import SmallStats from './../components/common/SmallStats'
 import StockForecast from '../components/stock/StockForecastContainer'
-import NewsPosts from '../components/common/NewsPosts'
 
 const StockOverview = ({ smallStats }) => (
 	<Container fluid className="main-content-container px-4">
@@ -32,12 +31,6 @@ const StockOverview = ({ smallStats }) => (
 					/>
 				</Col>
 			))}
-		</Row>
-
-		<Row>
-			<Col lg="12" md="12" sm="12" className="mb-4">
-				<NewsPosts />
-			</Col>
 		</Row>
 	</Container>
 )
