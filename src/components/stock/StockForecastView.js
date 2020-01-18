@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, CardHeader, CardBody } from 'shards-react'
-
 import Chart from '../../utils/chart'
 
-class StockForecast extends React.Component {
+class StockForecastView extends React.Component {
 	constructor(props) {
 		super(props)
 
@@ -67,23 +66,28 @@ class StockForecast extends React.Component {
 			...this.props.chartOptions
 		}
 
-		const BlogUsersOverview = new Chart(this.canvasRef.current, {
+		let model = JSON.parse(this.props.model[0].model)
+
+		this.props.chartData.datasets[0].data = Object.values(model.yhat)
+
+		const StockChart = new Chart(this.canvasRef.current, {
 			type: 'line',
 			data: this.props.chartData,
 			options: chartOptions
 		})
 
 		// They can still be triggered on hover.
-		const buoMeta = BlogUsersOverview.getDatasetMeta(0)
+		const buoMeta = StockChart.getDatasetMeta(0)
 		buoMeta.data[0]._model.radius = 0
 		buoMeta.data[this.props.chartData.datasets[0].data.length - 1]._model.radius = 0
 
 		// Render the chart.
-		BlogUsersOverview.render()
+		StockChart.render()
 	}
 
 	render() {
 		const { title } = this.props
+
 		return (
 			<Card small className="h-100">
 				<CardHeader className="border-bottom">
@@ -97,13 +101,13 @@ class StockForecast extends React.Component {
 	}
 }
 
-StockForecast.propTypes = {
+StockForecastView.propTypes = {
 	title: PropTypes.string,
 	chartData: PropTypes.object,
 	chartOptions: PropTypes.object
 }
 
-StockForecast.defaultProps = {
+StockForecastView.defaultProps = {
 	chartData: {
 		labels: Array.from(new Array(30), (_, i) => (i === 0 ? 1 : i)),
 		datasets: [
@@ -137,4 +141,4 @@ StockForecast.defaultProps = {
 	}
 }
 
-export default StockForecast
+export default StockForecastView
