@@ -1,9 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { hot } from 'react-hot-loader'
 import PropTypes from 'prop-types'
 import { Card, CardHeader, CardBody } from 'shards-react'
-
 import Chart from '../../utils/chart'
 
 class StockForecastView extends React.Component {
@@ -69,6 +66,9 @@ class StockForecastView extends React.Component {
 			...this.props.chartOptions
 		}
 
+		this.props.chartData.datasets[0].data = this.props.data[0]
+		this.props.chartData.datasets[1].data = this.props.data[1]
+
 		const BlogUsersOverview = new Chart(this.canvasRef.current, {
 			type: 'line',
 			data: this.props.chartData,
@@ -86,6 +86,7 @@ class StockForecastView extends React.Component {
 
 	render() {
 		const { title } = this.props
+
 		return (
 			<Card small className="h-100">
 				<CardHeader className="border-bottom">
@@ -139,15 +140,4 @@ StockForecastView.defaultProps = {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		chartData: state.homeReducer.chartData
-	}
-}
-
-export default hot(module)(
-	connect(
-		mapStateToProps,
-		null
-	)(StockForecastView)
-)
+export default StockForecastView
