@@ -7,7 +7,8 @@ const STOCK_CHART_QUERY = gql`
 	query getModels($symbols: [String]!) {
 		getModels(criteria: { symbols: $symbols }) {
 			symbol
-			model
+			stock_history
+			stock_forecast
 		}
 	}
 `
