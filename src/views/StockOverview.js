@@ -17,7 +17,7 @@ const StockOverview = ({ smallStats }) => (
 
 		<Row>
 			{smallStats.map((stats, idx) => (
-				<Col className="col-lg mb-4" key={idx} {...stats.attrs}>
+				<Col lg="3" md="3" sm="3" className="mb-4" key={idx} {...stats.attrs}>
 					<SmallStats
 						id={`small-stats-${idx}`}
 						variation="1"
@@ -56,62 +56,6 @@ StockOverview.defaultProps = {
 					backgroundColor: 'rgba(0, 184, 216, 0.1)',
 					borderColor: 'rgb(0, 184, 216)',
 					data: [1, 2, 1, 3, 5, 4, 7]
-				}
-			]
-		},
-		{
-			label: 'Google Trends',
-			value: '182',
-			percentage: '12.4',
-			increase: true,
-			chartLabels: [null, null, null, null, null, null, null],
-			attrs: { md: '6', sm: '6' },
-			datasets: [
-				{
-					label: 'Today',
-					fill: 'start',
-					borderWidth: 1.5,
-					backgroundColor: 'rgba(23,198,113,0.1)',
-					borderColor: 'rgb(23,198,113)',
-					data: [1, 2, 3, 3, 3, 4, 4]
-				}
-			]
-		},
-		{
-			label: 'Analyst Ratings',
-			value: '8,147',
-			percentage: '3.8%',
-			increase: false,
-			decrease: true,
-			chartLabels: [null, null, null, null, null, null, null],
-			attrs: { md: '4', sm: '6' },
-			datasets: [
-				{
-					label: 'Today',
-					fill: 'start',
-					borderWidth: 1.5,
-					backgroundColor: 'rgba(255,180,0,0.1)',
-					borderColor: 'rgb(255,180,0)',
-					data: [2, 3, 3, 3, 4, 3, 3]
-				}
-			]
-		},
-		{
-			label: 'Revenue',
-			value: '29',
-			percentage: '2.71%',
-			increase: false,
-			decrease: true,
-			chartLabels: [null, null, null, null, null, null, null],
-			attrs: { md: '4', sm: '6' },
-			datasets: [
-				{
-					label: 'Today',
-					fill: 'start',
-					borderWidth: 1.5,
-					backgroundColor: 'rgba(255,65,105,0.1)',
-					borderColor: 'rgb(255,65,105)',
-					data: [1, 7, 1, 3, 1, 4, 8]
 				}
 			]
 		}
