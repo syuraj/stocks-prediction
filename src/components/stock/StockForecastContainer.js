@@ -13,11 +13,15 @@ const STOCK_CHART_QUERY = gql`
 	}
 `
 
-export default function StockForecastContainer() {
-	const { loading, error, data } = useQuery(STOCK_CHART_QUERY, { variables: { symbols: ['TSLA'] } })
+export default function StockForecastContainer({ symbol }) {
+	const { loading, error, data } = useQuery(STOCK_CHART_QUERY, { variables: { symbols: [symbol.toUpperCase()] } })
 
 	if (loading) return <p>Loading...</p>
 	if (error) return <p>Error :(</p>
 
-	return <StockForecastView model={data.getModels}></StockForecastView>
+	if (data.getModels && data.getModels.length) {
+		return <StockForecastView model={data.getModels}></StockForecastView>
+	}
+
+	return null
 }

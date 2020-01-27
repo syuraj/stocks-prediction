@@ -5,35 +5,43 @@ import { Container, Row, Col } from 'shards-react'
 import SmallStats from './../components/common/SmallStats'
 import StockForecast from '../components/stock/StockForecastContainer'
 
-const StockOverview = ({ smallStats }) => (
-	<Container fluid className="main-content-container px-4">
-		<Row noGutters className="page-header py-2"></Row>
+const StockOverview = (props) => {
+	const {
+		smallStats,
+		location: { pathname }
+	} = props
+	const symbol = pathname.substring(pathname.lastIndexOf('/') + 1)
 
-		<Row>
-			<Col lg="12" md="12" sm="12" className="mb-4">
-				<StockForecast />
-			</Col>
-		</Row>
+	return (
+		<Container fluid className="main-content-container px-4">
+			<Row noGutters className="page-header py-2"></Row>
 
-		<Row>
-			{smallStats.map((stats, idx) => (
-				<Col lg="3" md="3" sm="3" className="mb-4" key={idx} {...stats.attrs}>
-					<SmallStats
-						id={`small-stats-${idx}`}
-						variation="1"
-						chartData={stats.datasets}
-						chartLabels={stats.chartLabels}
-						label={stats.label}
-						value={stats.value}
-						percentage={stats.percentage}
-						increase={stats.increase}
-						decrease={stats.decrease}
-					/>
+			<Row>
+				<Col lg="12" md="12" sm="12" className="mb-4">
+					<StockForecast symbol={symbol} />
 				</Col>
-			))}
-		</Row>
-	</Container>
-)
+			</Row>
+
+			<Row>
+				{smallStats.map((stats, idx) => (
+					<Col lg="3" md="3" sm="3" className="mb-4" key={idx} {...stats.attrs}>
+						<SmallStats
+							id={`small-stats-${idx}`}
+							variation="1"
+							chartData={stats.datasets}
+							chartLabels={stats.chartLabels}
+							label={stats.label}
+							value={stats.value}
+							percentage={stats.percentage}
+							increase={stats.increase}
+							decrease={stats.decrease}
+						/>
+					</Col>
+				))}
+			</Row>
+		</Container>
+	)
+}
 
 StockOverview.propTypes = {
 	smallStats: PropTypes.array
